@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Users</title>
+</head>
+<body>
+<h1>List Users</h1>
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Date of Birth</th>
+    <th>User Status</th>
+    <th>Gender</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</tr>
+
+{% for user in users %}
+    <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.surname }}</td>
+        <td>{{ user.dateOfBirth|date('Y-m-d') }}</td>
+        <td>{{ user.userStatus }}</td>
+        <td>{{ user.gender }}</td>
+        <td><a href="{{ path('app_edit', {'id': user.id}) }}">Edit</a></td>
+        <td><a href="{{ path('app_delete', {'id': user.id}) }}">Delete</a></td>
+    </tr>
+{% endfor %}
+
+</table>
+</body>
+</html>

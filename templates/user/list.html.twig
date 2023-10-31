@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>The number of users is : {{ users | length }}</h1>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>surname</th>
+        <th>dateOfBirth</th>
+        <th>userStatus</th>
+        <th>gender</th>
+        <th>Details</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td><img src="{{ user.picture }}"</td>
+            <td>{{ user.name | upper }}</td>
+            <td>{{ user.surname }}</td>
+            <td>{{ user.dateOfBirth|date('Y-m-d') }}</td>
+            <td>{{ user.userStatus }}</td>
+            <td>{{ user.gender }}</td>
+            <td><a href="{{ path('app_userDetails', {'id': user.id}) }}">Details</a></td>
+        </tr>
+    {% else %}
+        <h1>Empty Table</h1>
+    {% endfor %}
+</table>
+{% set nbTotal = 0 %}
+{% for user in users %}
+    {% set nbTotal = nbTotal + user.nb_books %}
+{% endfor %}
+<p>The total number of books for all users is: {{ nbTotal }}</p>
+</body>
+</html>
